@@ -1,227 +1,140 @@
-# 📘 Babua LMS – Free-First Learning Platform
+# Babua LMS – Free-First Learning Platform
 
-Babua LMS is a **free, structured, and engineering-focused Learning Management System** built around the Babua mindset:  
-**practical learning, real growth, no certificate selling, no paywalls.**
+Babua LMS is a **free, structured learning platform** built with one simple idea:
 
-All core learning content is **100% free**.  
-Monetization is **ethical, optional, and value-driven**.
+> Learning should be free. Guidance can be paid. Progress should be earned.
 
----
-
-## 🎯 Core Philosophy
-
-- Learning should never be locked behind money
-- Students pay for **guidance, accountability, and mentorship**, not videos
-- Progress should be **earned**, not auto-completed
-- Consistency matters more than binge learning
+This project was built as part of a **product design challenge**, where the goal was to design an LMS that delivers real learning value **without selling courses or locking content behind paywalls**.
 
 ---
 
-## ✨ Key Features
+## Why I Built This
 
-### 🔐 Authentication
-- Google & GitHub login
-- Secure server-side session handling
-- Protected routes using server hooks
+Most LMS platforms today:
+- Lock basic learning behind subscriptions
+- Focus more on certificates than understanding
+- Let users binge videos without real progress
+- Monetize learning itself instead of guidance
+
+As a student, this never felt right.
+
+Babua LMS is my attempt to flip that model:
+- **All learning content is free**
+- Progress is tracked honestly
+- Lectures unlock only when you complete the previous ones
+- Monetization is limited to mentorship and guidance, not videos
 
 ---
 
-### 📊 Dashboard
-- Displays all available courses
+## What This Project Does
+
+Babua LMS provides structured learning across core Computer Science subjects while enforcing **discipline and consistency** instead of random video watching.
+
+### Main things it supports:
+- Login using Google or GitHub
+- A dashboard showing all available courses
 - Per-course progress tracking
-- Visual progress bar
-- Difficulty labels (Beginner / Intermediate / Advanced)
-- Last watched lecture per course
-- Clean separation between **learning** and **monetization**
+- Sequential lecture unlocking
+- Daily learning streaks
+- A separate section for paid mentorship (mocked)
 
 ---
 
-### 📚 Courses & Learning Flow
-- Structured courses across core CS domains:
-  - DSA (pattern-based, interview-focused)
-  - System Design
-  - Low Level Design (LLD)
-  - Operating Systems
-  - Computer Networks
-  - DBMS
-- Ordered lectures with clear descriptions
-- Embedded YouTube videos (no custom streaming)
+## Learning Experience
+
+### Courses Included
+- DSA (Pattern-based, interview focused)
+- System Design (Beginner → Advanced)
+- Low Level Design (LLD)
+- Operating Systems
+- Computer Networks
+- DBMS
+
+Each course has:
+- Ordered lectures
+- YouTube videos embedded using iframe (no custom streaming)
+- Clear descriptions and takeaways
+- Locked progression to avoid skipping
 
 ---
 
-### 🔒 Lecture Locking
-- Lectures unlock sequentially
-- Prevents random skipping
-- Encourages conceptual understanding
+## Progress & Accountability
 
----
+### Lecture Progress
+- A lecture is marked complete **only when the user explicitly completes it**
+- Progress is stored per user per lecture
+- Course progress updates automatically
 
-### ✅ Progress Tracking
-- Explicit lecture completion
-- Progress stored per user per lecture
-- No fake auto-completion
-- Accurate resume behavior
+### Resume Learning
+- The dashboard shows **last watched lecture**
+- Users can continue exactly where they left off
 
----
-
-### 📝 Lecture Takeaways
-- Each lecture includes clear takeaways
-- Helps learners understand what they gained
-- Improves retention and clarity
-
----
-
-### 🔥 Daily Streak System
-- Tracks daily learning consistency
-- Time-based validation
-- Displays:
+### Daily Streak System
+- Tracks how consistently a user learns
+- Based on actual time spent, not page reloads
+- Shows:
   - Current streak
   - Longest streak
-- Encourages habit formation
+
+This encourages habit-based learning instead of binge watching.
 
 ---
 
-### 💰 Ethical Monetization (Exclusive Section)
-- Learning content is always free
-- Paid offerings focus on:
-  - Mentor guidance
-  - Office hours
-  - Career advice
-- Implemented as a separate route
-- No coupling with core learning flow
+## Monetization (Exclusive Section)
+
+Babua LMS does **not sell courses**.
+
+Instead, monetization is based on:
+- Mentor guidance
+- Office hours
+- Career advice
+
+This section is:
+- Completely optional
+- Separated from learning content
+- Implemented as a different route so learning never feels blocked
 
 ---
 
-## 🧠 Why This Is Not a Traditional LMS
+## Tech Stack
 
-❌ No course selling  
-❌ No locked videos  
-❌ No certificate gimmicks  
-❌ No high-priced subscriptions  
-
-✅ Free structured learning  
-✅ Real progress tracking  
-✅ Accountability-driven design  
-✅ Optional mentorship monetization  
-
----
-
-## 🏗 Architecture Overview
-
-### Tech Stack
 - **Frontend & Backend**: Next.js (App Router)
-- **Authentication**: Auth.js (NextAuth)
+- **Authentication**: Auth.js (Google & GitHub)
 - **Database**: PostgreSQL (Supabase)
 - **ORM**: Prisma v7 (Driver Adapter)
 - **Styling**: Tailwind CSS
-- **Video Hosting**: YouTube (iframe embeds)
-
-
-
-## 🗄 Database Design (High Level)
-
-The database schema is designed to reflect **real learning behavior**, not UI shortcuts.
-
-### Core Models
-
-- **User**
-  - Authenticated learner
-  - Linked to progress and streak data
-
-- **Course**
-  - Represents a structured learning path
-  - Includes difficulty level and total lectures
-
-- **Lecture**
-  - Ordered learning unit within a course
-  - Contains video URL, description, and takeaways
-
-- **Progress**
-  - Tracks lecture completion per user
-  - Ensures accurate progress and resume behavior
-
-- **Streak**
-  - Tracks daily learning consistency
-  - Stores current and longest streaks
-
-All relationships are **normalized and user-specific**.
+- **Videos**: YouTube embeds (iframe)
 
 ---
 
-## 🧪 Learning & Progress Logic
+## How the System Works (High Level)
 
-- Progress is tracked **per lecture**, not per course
-- Completion is **explicit** (user action)
-- Course progress is derived from completed lectures
-- Resume logic is computed from real progress data
-- No artificial or client-only progress states
-
-This ensures:
-- Accurate dashboard stats
-- Correct “Continue learning” behavior
-- No progress desync after refresh or logout
+1. User logs in using Google/GitHub
+2. Dashboard fetches courses and user progress
+3. Course player enforces lecture order
+4. Progress updates per lecture
+5. Streak updates based on learning time
+6. Mentorship lives separately from learning
 
 ---
 
-## 🔥 Streak System Logic
+## Running the Project Locally
 
-- Time spent on learning pages is tracked
-- Streak updates only if minimum engagement is met
-- Streaks are updated server-side
-- Prevents accidental or fake streak inflation
+```bash
+# Clone the repo
+git clone <your-repo-url>
+cd babua_hackathon_lms
 
-The goal is to promote **daily habit-building**, not gamification abuse.
+# Install dependencies
+npm install
 
----
+# Setup environment variables
+cp .env.example .env
+# Add DATABASE_URL and DIRECT_URL
 
-## 💡 Monetization Strategy (Design Rationale)
+# Push database schema and seed data
+npx prisma db push
+node prisma/seed.js
 
-Babua LMS deliberately avoids selling courses.
-
-### What is free
-- All courses
-- All lectures
-- All takeaways
-- All progress tracking
-
-### What is paid (optional)
-- Mentor guidance
-- 1:1 office hours
-- Career and interview advice
-
-This aligns with the belief that:
-> Knowledge should be free, context should be paid for.
-
-The monetization flow is intentionally **separate** from the learning experience.
-
----
-
-## 🚀 Why This Approach Scales
-
-- No video hosting or bandwidth cost
-- Minimal backend complexity
-- Stateless frontend where possible
-- Clear separation of concerns
-- Easy to extend with:
-  - More courses
-  - More mentors
-  - More analytics
-
----
-
-## 🧩 What This Project Demonstrates
-
-- Product-first thinking
-- Clean system design
-- Ethical monetization
-- Real-world LMS behavior
-- Focus on learner outcomes, not vanity metrics
-
----
-
-## 🏁 Final Note
-
-Babua LMS is not designed to **sell education**.  
-It is designed to **support consistent, meaningful learning**.
-
-> **“All knowledge is free. Guidance is optional.”**
+# Start the dev server
+npm run dev
