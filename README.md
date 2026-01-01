@@ -219,16 +219,6 @@ The monetization flow is intentionally **separate** from the learning experience
 
 ---
 
-## 📸 Screenshots (Optional)
-
-You may add screenshots of:
-- Landing page
-- Dashboard
-- Course player
-- Exclusive (monetization) section
-
----
-
 ## 🏁 Final Note
 
 Babua LMS is not designed to **sell education**.  
